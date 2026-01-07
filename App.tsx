@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Github,
   Linkedin,
@@ -17,6 +17,7 @@ import {
   Zap,
   ChevronDown
 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 import { PERSONAL_INFO, SKILL_CATEGORIES, EXPERIENCES, EDUCATIONS, STATS, PROJECTS } from './data';
 import SectionHeading from './components/SectionHeading';
@@ -24,6 +25,31 @@ import SkillBar from './components/SkillBar';
 import TypingText from './components/TypingText';
 
 const App: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [sending, setSending] = useState(false);
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.current) return;
+
+    setSending(true);
+
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',   // Replace with your EmailJS Service ID
+      'YOUR_TEMPLATE_ID',  // Replace with your Template ID
+      form.current,
+      'YOUR_PUBLIC_KEY'    // Replace with your EmailJS Public Key
+    )
+    .then(() => {
+      alert('Message sent! ✅');
+      setSending(false);
+      form.current?.reset();
+    }, () => {
+      alert('Error sending message 😢');
+      setSending(false);
+    });
+  };
+
   return (
     <div className="max-w-[1440px] mx-auto min-h-screen bg-[#121212] selection:bg-green-500 selection:text-black rounded-[2rem] md:rounded-[3rem] border border-white/5 shadow-2xl relative overflow-hidden scroll-smooth">
 
@@ -36,10 +62,7 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto flex justify-between items-center">
 
           {/* LOGO / NAME LINK */}
-          <a
-            href="#hero"
-            className="text-xl font-medium tracking-tight hover:text-green-500 transition-colors cursor-pointer"
-          >
+          <a href="#hero" className="text-xl font-medium tracking-tight hover:text-green-500 transition-colors cursor-pointer">
             {PERSONAL_INFO.firstName}{' '}
             <span className="font-bold">{PERSONAL_INFO.lastName}</span>
           </a>
@@ -118,15 +141,13 @@ const App: React.FC = () => {
 
                 <div className="flex gap-4">
                   <a
-                    href="/assets/myresume_cv.pdf"  // PDF inside public/assets/
-                    target="_blank"                 // open in a new tab
-                    rel="noopener noreferrer"       // security best practice
+                    href="/assets/myresume_cv.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 px-7 py-3 bg-green-500 text-black rounded-full font-black text-xs uppercase tracking-widest hover:bg-white transition-colors duration-300"
                   >
                     <Download size={16} /> RESUME
                   </a>
-
-
 
                   <button
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -335,156 +356,177 @@ const App: React.FC = () => {
         </div>
 
        {/* Contact Section */}
-{/* Contact Section */}
-<section
-  id="contact"
-  className="relative bg-[#1a1a1a] rounded-[3rem] overflow-hidden shadow-2xl scroll-mt-32"
->
-  {/* Top Accent */}
-  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50" />
 
-  {/* CONTENT AREA */}
-  <div className="relative px-10 pt-14 pb-20 md:px-20 md:pt-20 md:pb-32">
-    <SectionHeading>Get in touch</SectionHeading>
+ {/* Contact Section */}
+        <section
+          id="contact"
+          className="relative bg-[#1a1a1a] rounded-[3rem] overflow-hidden shadow-2xl scroll-mt-32"
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50" />
+          <div className="relative px-10 pt-14 pb-20 md:px-20 md:pt-20 md:pb-32">
+            <SectionHeading>Get in touch</SectionHeading>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-      {/* LEFT */}
-      <div className="space-y-10">
-        <p className="text-gray-400 text-xl leading-relaxed font-medium">
-          Have an innovative idea? Let's turn it into reality. I'm always open to discussing new projects and creative opportunities.
-        </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 
-        <div className="space-y-8">
-          {[
-            {
-              icon: MapPin,
-              value: PERSONAL_INFO.location,
-              href: `https://www.google.com/maps/search/${encodeURIComponent(PERSONAL_INFO.location)}`,
-            },
-            { icon: Mail, value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
-            { icon: Github, value: `@${PERSONAL_INFO.github}`, href: `https://github.com/${PERSONAL_INFO.github}` },
-          ].map((item, i) => (
-            <a
-              key={i}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-6 group cursor-pointer"
-            >
-              <div className="bg-[#121212] p-4 rounded-2xl border border-white/5 group-hover:border-green-500 group-hover:bg-green-500/10 transition-all">
-                <item.icon className="text-green-500" size={24} />
+              {/* LEFT */}
+              <div className="space-y-10">
+                <p className="text-gray-400 text-xl leading-relaxed font-medium">
+                  Have an innovative idea? Let's turn it into reality. I'm always open to discussing new projects and creative opportunities.
+                </p>
+
+                <div className="space-y-8">
+                  {[
+                    {
+                      icon: MapPin,
+                      value: PERSONAL_INFO.location,
+                      href: `https://www.google.com/maps/search/${encodeURIComponent(PERSONAL_INFO.location)}`,
+                    },
+                    { icon: Mail, value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
+                    { icon: Github, value: `@${PERSONAL_INFO.github}`, href: `https://github.com/${PERSONAL_INFO.github}` },
+                  ].map((item, i) => (
+                    <a
+                      key={i}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-6 group cursor-pointer"
+                    >
+                      <div className="bg-[#121212] p-4 rounded-2xl border border-white/5 group-hover:border-green-500 group-hover:bg-green-500/10 transition-all">
+                        <item.icon className="text-green-500" size={24} />
+                      </div>
+                      <span className="text-gray-300 text-lg font-bold group-hover:text-white transition-colors">
+                        {item.value}
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
-              <span className="text-gray-300 text-lg font-bold group-hover:text-white transition-colors">
-                {item.value}
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
 
-      {/* RIGHT (FORM) */}
-      <form className="bg-[#121212] p-10 md:p-12 rounded-[2.5rem] border border-white/5 space-y-8 shadow-2xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-              Your Name
-            </label>
-            <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
+              {/* RIGHT (FORM) */}
+              <form
+                ref={form}
+                onSubmit={sendEmail}
+                className="bg-[#121212] p-10 md:p-12 rounded-[2.5rem] border border-white/5 space-y-8 shadow-2xl"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+                      Your Name
+                    </label>
+                    <input
+                      name="name"
+                      className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none resize-none"
+                    placeholder="Your Message"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full bg-green-500 text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition"
+                >
+                  {sending ? 'Sending...' : 'Push Message'}
+                </button>
+              </form>
+
+            </div>
           </div>
-          <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-              Email Address
-            </label>
-            <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
+
+          {/* MAP STRIP */}
+          <a
+            href="https://www.google.com/maps/place/Hunza,+Gilgit-Baltistan,+Pakistan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative block h-52 sm:h-64 cursor-pointer border-t border-white/5"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1600"
+              alt="Map"
+              className="w-full h-full object-cover opacity-30 grayscale brightness-50"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-[#121212] p-4 sm:p-5 rounded-2xl border border-white/10 shadow-2xl animate-bounce">
+                <MapPin className="w-8 h-8 text-[#3ba638]" />
+              </div>
+            </div>
+          </a>
+        </section>
+
+        {/* Footer */}
+        <footer className="max-w-6xl mx-auto px-10 py-16 border-t border-white/5 mt-20">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+            <div className="flex flex-col items-center md:items-start space-y-2">
+              <p className="text-white font-black text-lg tracking-tighter">
+                {PERSONAL_INFO.firstName} {PERSONAL_INFO.lastName}
+              </p>
+              <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">
+                © {new Date().getFullYear()} Designed with passion
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-8">
+              <a href="https://github.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
+              <a href="https://www.linkedin.com/in/sageer-ahmed-28b704321" className="text-gray-500 hover:text-green-500 transition-colors"><Linkedin size={20} /></a>
+              <a href="https://x.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Twitter size={20} /></a>
+              <a href="https://instagram.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Instagram size={20} /></a>
+            </div>
+
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex flex-col items-center text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors"
+            >
+              <ChevronDown className="rotate-180 mb-2 group-hover:-translate-y-1 transition-transform" size={16} />
+              <span>Top</span>
+            </button>
           </div>
+        </footer>
+
+        {/* Vertical Scroll Indicator */}
+        <div className="fixed bottom-12 right-12 hidden xl:flex flex-col items-center space-y-6">
+          <div className="w-[2px] h-32 bg-white/5 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-green-500 origin-top animate-[scroll_3s_linear_infinite]"></div>
+          </div>
+          <span className="[writing-mode:vertical-lr] text-[10px] uppercase tracking-[0.5em] font-black text-gray-600">Explore</span>
         </div>
 
-        <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-            Message
-          </label>
-          <textarea
-            rows={4}
-            className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none resize-none"
-          />
-        </div>
-
-        <button className="w-full bg-green-500 text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition">
-          Push Message
-        </button>
-      </form>
-    </div>
-  </div>
-
-  {/* MAP STRIP — TOUCHES FOOTER BORDER */}
-  <a
-    href="https://www.google.com/maps/place/Hunza,+Gilgit-Baltistan,+Pakistan"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="relative block h-52 sm:h-64 cursor-pointer border-t border-white/5"
-  >
-    <img
-      src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1600"
-      alt="Map"
-      className="w-full h-full object-cover opacity-30 grayscale brightness-50"
-      loading="lazy"
-    />
-
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="bg-[#121212] p-4 sm:p-5 rounded-2xl border border-white/10 shadow-2xl animate-bounce">
-        <MapPin className="w-8 h-8 text-[#3ba638]" />
-      </div>
-    </div>
-  </a>
-</section>
+        <style>{`
+          @keyframes scroll {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+          }
+        `}</style>
 
       </main>
-
-      {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-10 py-16 border-t border-white/5 mt-20">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
-          <div className="flex flex-col items-center md:items-start space-y-2">
-            <p className="text-white font-black text-lg tracking-tighter">
-              {PERSONAL_INFO.firstName} {PERSONAL_INFO.lastName}
-            </p>
-            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">
-              © {new Date().getFullYear()} Designed with passion
-            </p>
-          </div>
-
-          <div className="flex items-center space-x-8">
-            <a href="https://github.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
-            <a href="https://www.linkedin.com/in/sageer-ahmed-28b704321" className="text-gray-500 hover:text-green-500 transition-colors"><Linkedin size={20} /></a>
-            <a href="https://x.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Twitter size={20} /></a>
-            <a href="https://instagram.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Instagram size={20} /></a>
-          </div>
-
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group flex flex-col items-center text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors"
-          >
-            <ChevronDown className="rotate-180 mb-2 group-hover:-translate-y-1 transition-transform" size={16} />
-            <span>Top</span>
-          </button>
-        </div>
-      </footer>
-
-      {/* Vertical Scroll Indicator */}
-      <div className="fixed bottom-12 right-12 hidden xl:flex flex-col items-center space-y-6">
-        <div className="w-[2px] h-32 bg-white/5 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-green-500 origin-top animate-[scroll_3s_linear_infinite]"></div>
-        </div>
-        <span className="[writing-mode:vertical-lr] text-[10px] uppercase tracking-[0.5em] font-black text-gray-600">Explore</span>
-      </div>
-
-      <style>{`
-        @keyframes scroll {
-          0% { transform: scaleY(0); transform-origin: top; }
-          50% { transform: scaleY(1); transform-origin: top; }
-          51% { transform: scaleY(1); transform-origin: bottom; }
-          100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-      `}</style>
     </div>
   );
 };
