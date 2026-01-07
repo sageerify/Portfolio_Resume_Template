@@ -101,10 +101,7 @@ bash
 Copy code
 npm run dev
 📸 Screenshots
-<p align="center">
-  <img src="images/image.png" alt="Portfolio Preview" width="800" />
-</p>
-
+![Portfolio Preview](images/image.png)
 
 
 📬 Contact & Links
