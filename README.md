@@ -103,7 +103,7 @@ bash
 Copy code
 npm run dev
 📸 Screenshots
-![ReactJS Resume Website Template](images/image.png.png?raw=true 'ReactJS Resume Website Template')
+![Portfolio Preview](images/image.png)
 
 
 📬 Contact & Links
