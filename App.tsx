@@ -118,13 +118,14 @@ const App: React.FC = () => {
 
                 <div className="flex gap-4">
                   <a
-                    href="/assests/myresume_cv.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-7 py-3 bg-green-500 text-black rounded-full font-black text-xs uppercase tracking-widest hover:bg-white"
+                    href="/assets/myresume_cv.pdf"  // PDF inside public/assets/
+                    target="_blank"                 // open in a new tab
+                    rel="noopener noreferrer"       // security best practice
+                    className="flex items-center gap-2 px-7 py-3 bg-green-500 text-black rounded-full font-black text-xs uppercase tracking-widest hover:bg-white transition-colors duration-300"
                   >
                     <Download size={16} /> RESUME
                   </a>
+
 
 
                   <button
@@ -260,8 +261,18 @@ const App: React.FC = () => {
           <SectionHeading>My work</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PROJECTS.map((project, idx) => (
-              <div key={idx} className="group relative rounded-[2rem] overflow-hidden border border-white/5 shadow-xl aspect-[4/3] cursor-pointer bg-[#1a1a1a]">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" />
+              <a
+                key={idx}
+                href={project.link}       // Link to open on click
+                target="_blank"           // Open in new tab
+                rel="noopener noreferrer" // Security best practice
+                className="group relative rounded-[2rem] overflow-hidden border border-white/5 shadow-xl aspect-[4/3] cursor-pointer bg-[#1a1a1a] block"
+              >
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
                 <div className="absolute bottom-0 left-0 p-8 w-full translate-y-2 group-hover:translate-y-0 transition-transform">
                   <h4 className="text-2xl font-black text-white mb-3">{project.title}</h4>
@@ -270,10 +281,12 @@ const App: React.FC = () => {
                     <ChevronDown size={14} className="-rotate-90" />
                   </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
+
+
 
         {/* Experience & Education Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -321,92 +334,109 @@ const App: React.FC = () => {
           </section>
         </div>
 
-        {/* Contact Section */}
-        <section
-          id="contact"
-          className="relative bg-[#1a1a1a] rounded-[3rem] overflow-hidden shadow-2xl scroll-mt-32"
-        >
-          {/* Top Accent */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50" />
+       {/* Contact Section */}
+{/* Contact Section */}
+<section
+  id="contact"
+  className="relative bg-[#1a1a1a] rounded-[3rem] overflow-hidden shadow-2xl scroll-mt-32"
+>
+  {/* Top Accent */}
+  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50" />
 
-          {/* CONTENT AREA */}
-          <div className="relative px-10 pt-14 pb-20 md:px-20 md:pt-20 md:pb-32">
-            <SectionHeading>Get in touch</SectionHeading>
+  {/* CONTENT AREA */}
+  <div className="relative px-10 pt-14 pb-20 md:px-20 md:pt-20 md:pb-32">
+    <SectionHeading>Get in touch</SectionHeading>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-              {/* LEFT */}
-              <div className="space-y-10">
-                <p className="text-gray-400 text-xl leading-relaxed font-medium">
-                  Have an innovative idea? Let's turn it into reality. I'm always open to discussing new projects and creative opportunities.
-                </p>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      {/* LEFT */}
+      <div className="space-y-10">
+        <p className="text-gray-400 text-xl leading-relaxed font-medium">
+          Have an innovative idea? Let's turn it into reality. I'm always open to discussing new projects and creative opportunities.
+        </p>
 
-                <div className="space-y-8">
-                  {[
-                    { icon: MapPin, value: PERSONAL_INFO.location },
-                    { icon: Mail, value: PERSONAL_INFO.email },
-                    { icon: Github, value: `@${PERSONAL_INFO.github}` }
-                    
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-6 group cursor-pointer">
-                      <div className="bg-[#121212] p-4 rounded-2xl border border-white/5 group-hover:border-green-500 group-hover:bg-green-500/10 transition-all">
-                        <item.icon className="text-green-500" size={24} />
-                      </div>
-                      <span className="text-gray-300 text-lg font-bold group-hover:text-white transition-colors">
-                        {item.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+        <div className="space-y-8">
+          {[
+            {
+              icon: MapPin,
+              value: PERSONAL_INFO.location,
+              href: `https://www.google.com/maps/search/${encodeURIComponent(PERSONAL_INFO.location)}`,
+            },
+            { icon: Mail, value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
+            { icon: Github, value: `@${PERSONAL_INFO.github}`, href: `https://github.com/${PERSONAL_INFO.github}` },
+          ].map((item, i) => (
+            <a
+              key={i}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-6 group cursor-pointer"
+            >
+              <div className="bg-[#121212] p-4 rounded-2xl border border-white/5 group-hover:border-green-500 group-hover:bg-green-500/10 transition-all">
+                <item.icon className="text-green-500" size={24} />
               </div>
+              <span className="text-gray-300 text-lg font-bold group-hover:text-white transition-colors">
+                {item.value}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
 
-              {/* RIGHT (FORM) */}
-              <form className="bg-[#121212] p-10 md:p-12 rounded-[2.5rem] border border-white/5 space-y-8 shadow-2xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-                      Your Name
-                    </label>
-                    <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
-                  </div>
-                  <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-                      Email Address
-                    </label>
-                    <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-                    Message
-                  </label>
-                  <textarea rows={4} className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none resize-none" />
-                </div>
-
-                <button className="w-full bg-green-500 text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition">
-                  Push Message
-                </button>
-              </form>
-            </div>
+      {/* RIGHT (FORM) */}
+      <form className="bg-[#121212] p-10 md:p-12 rounded-[2.5rem] border border-white/5 space-y-8 shadow-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+              Your Name
+            </label>
+            <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
           </div>
-
-          {/* MAP STRIP — TOUCHES FOOTER BORDER */}
-          <div className="relative h-52 sm:h-64 bg-[#0c0c0c] cursor-pointer border-t border-white/5">
-            <img
-              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1600"
-              alt="Map"
-              className="w-full h-full object-cover opacity-30 grayscale brightness-50"
-              loading="lazy"
-            />
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-[#121212] p-4 sm:p-5 rounded-2xl border border-white/10 shadow-2xl animate-bounce">
-                <MapPin className="w-8 h-8 text-[#3ba638]" />
-              </div>
-            </div>
+          <div>
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+              Email Address
+            </label>
+            <input className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none" />
           </div>
-        </section>
+        </div>
 
+        <div>
+          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
+            Message
+          </label>
+          <textarea
+            rows={4}
+            className="w-full bg-[#1a1a1a] border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-green-500 outline-none resize-none"
+          />
+        </div>
+
+        <button className="w-full bg-green-500 text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition">
+          Push Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  {/* MAP STRIP — TOUCHES FOOTER BORDER */}
+  <a
+    href="https://www.google.com/maps/place/Hunza,+Gilgit-Baltistan,+Pakistan"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="relative block h-52 sm:h-64 cursor-pointer border-t border-white/5"
+  >
+    <img
+      src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1600"
+      alt="Map"
+      className="w-full h-full object-cover opacity-30 grayscale brightness-50"
+      loading="lazy"
+    />
+
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="bg-[#121212] p-4 sm:p-5 rounded-2xl border border-white/10 shadow-2xl animate-bounce">
+        <MapPin className="w-8 h-8 text-[#3ba638]" />
+      </div>
+    </div>
+  </a>
+</section>
 
       </main>
 
@@ -423,7 +453,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-8">
-           <a href="https://github.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
+            <a href="https://github.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
             <a href="https://www.linkedin.com/in/sageer-ahmed-28b704321" className="text-gray-500 hover:text-green-500 transition-colors"><Linkedin size={20} /></a>
             <a href="https://x.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Twitter size={20} /></a>
             <a href="https://instagram.com/sageerify" className="text-gray-500 hover:text-green-500 transition-colors"><Instagram size={20} /></a>
