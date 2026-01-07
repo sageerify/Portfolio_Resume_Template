@@ -11,6 +11,8 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 
 👉 **View Portfolio:** https://sageer.me
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
+![ReactJS Resume Website Template](images/image.png.png?raw=true 'ReactJS Resume Website Template')
+
 
 ---
 
@@ -103,7 +105,11 @@ bash
 Copy code
 npm run dev
 📸 Screenshots
+<<<<<<< HEAD
 ![Portfolio Preview](images/image.png)
+=======
+![ReactJS Resume Website Template](images/image.png.png?raw=true 'ReactJS Resume Website Template')
+>>>>>>> e43feaa (Update README with screenshots)
 
 
 📬 Contact & Links
