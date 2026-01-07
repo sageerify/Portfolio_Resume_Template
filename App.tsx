@@ -35,10 +35,10 @@ const App: React.FC = () => {
     setSending(true);
 
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',   // Replace with your EmailJS Service ID
-      'YOUR_TEMPLATE_ID',  // Replace with your Template ID
+      'service_yzb6sr2',   // Replace with your EmailJS Service ID
+      'template_p3xddgi',  // Replace with your Template ID
       form.current,
-      'YOUR_PUBLIC_KEY'    // Replace with your EmailJS Public Key
+      'Ju04nZabAEPJ7bj-G'    // Replace with your EmailJS Public Key
     )
     .then(() => {
       alert('Message sent! ✅');
