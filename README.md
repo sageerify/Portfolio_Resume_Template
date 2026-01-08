@@ -12,7 +12,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
 ![ReactJS Resume Website Template](images/image.png.png?raw=true 'ReactJS Resume Website Template')
 
-
+![alt text](image.png)
 ---
 
 ## 👋 About Me

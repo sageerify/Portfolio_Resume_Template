@@ -141,7 +141,7 @@ const App: React.FC = () => {
 
                 <div className="flex gap-4">
                   <a
-                    href="/assets/myresume_cv.pdf"
+                    href="public\assets\myresume_cv.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-7 py-3 bg-green-500 text-black rounded-full font-black text-xs uppercase tracking-widest hover:bg-white transition-colors duration-300"
@@ -163,7 +163,7 @@ const App: React.FC = () => {
         </section>
 
         {/* About Section */}
-        {/* About Section */}
+        
         <section id="about" className="scroll-mt-32 mt-24 mb-24 relative overflow-visible">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
             <span className="text-[#3ba638]">Ab</span>out me
