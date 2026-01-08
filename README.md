@@ -10,7 +10,8 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 
 👉 **View Portfolio:** https://sageer.me
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
-![Screenshort](image.png?raw=true)
+![Screenshot](images/image.png)
+
 
 ---
 
