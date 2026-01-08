@@ -10,7 +10,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 
 👉 **View Portfolio:** https://sageer.me
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
-![ReactJS Resume Website Template](images/image.png.png?raw=true 'ReactJS Resume Website Template')
+![PAPA React JS Portfolio Starter Pack](image.png?raw=true "PAPA React JS Portfolio Stater Pack ")
 
 ![alt text](image.png)
 ---
