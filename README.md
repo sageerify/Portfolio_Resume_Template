@@ -12,7 +12,6 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
 ![Screenshort](image.png?raw=true)
 
-![alt text](image.png)
 ---
 
 ## 👋 About Me
