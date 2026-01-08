@@ -10,7 +10,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 
 👉 **View Portfolio:** https://sageer.me
 *(Replace with your GitHub Pages / Vercel / Netlify link)*
-![PAPA React JS Portfolio Starter Pack](image.png?raw=true "PAPA React JS Portfolio Stater Pack ")
+![Screenshort](image.png?raw=true)
 
 ![alt text](image.png)
 ---
