@@ -1,5 +1,5 @@
 # Sageer Ahmed — Portfolio Website
-
+ 
 A modern, animated, and fully responsive **personal portfolio website** built to showcase my skills, projects, and experience as a **Web Developer**.  
 Designed with a strong focus on **performance, clean UI, usability, and smooth animations**.
 
