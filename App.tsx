@@ -90,7 +90,7 @@ const App: React.FC = () => {
             {/* IMAGE */}
             <div className="w-full lg:w-[65%] rounded-[30px] md:rounded-[40px] overflow-hidden shadow-2xl bg-[#1e1e1e]">
               <img
-                src="images/image2.jpg"
+                src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="
                 alt="Workspace"
                 className="w-full h-[280px] sm:h-[400px] lg:h-[550px] object-cover brightness-90"
               />
