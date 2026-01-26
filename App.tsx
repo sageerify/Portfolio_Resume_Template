@@ -218,7 +218,7 @@ const App: React.FC = () => {
             <div className="hidden lg:flex lg:col-span-4 xl:col-span-3 justify-end items-center h-full">
               <div className="w-72 h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#252525] transform hover:scale-105 transition-all duration-500">
                 <img
-                  src="https://media.licdn.com/dms/image/v2/D4D03AQEiq069d9lrrw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722860522189?e=2147483647&v=beta&t=fsDNL0gDLE7L7-v3ZC5HIxEpuFdj7N-mhRnPEIq1MwI"
+                  src="https://nationdispatch.com/wp-content/uploads/2025/04/Gray-Yellow-Modern-Business-Magazine-Cover-1068x1511.jpg"
                   alt="Sageer Ahmed Profile"
                   className="w-full h-full object-cover"
                 />
