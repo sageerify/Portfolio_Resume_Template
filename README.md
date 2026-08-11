@@ -17,7 +17,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 ## 👋 About Me
  
 I’m **Sageer Ahmed**, a passionate **Web Developer** based in **Hunza, Gilgit, Pakistan**.   
-I specialize in building **high-performance, visually clean, and user-friendly web applications** that balance design and functionality.
+I specialize in building **high-performance, visually clean, and user-friendly web applications** that balance design and functionality. 
  
 I enjoy turning ideas into real-world digital products using modern web technologies. 
 
