@@ -10,7 +10,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
 👉 **View Portfolio:**       
 *(Replace with your GitHub Pages / Vercel / Netlify link)*    
   
-![Portfolio Screenshot](images/image.png)
+![Portfolio Screenshot](images/image.png) 
    
 ---   
 
