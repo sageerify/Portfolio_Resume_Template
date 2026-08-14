@@ -12,7 +12,7 @@ Designed with a strong focus on **performance, clean UI, usability, and smooth a
   
 ![Portfolio Screenshot](images/image.png)
    
----  
+---   
 
 ## 👋 About Me
  
