@@ -32,7 +32,7 @@ I enjoy turning ideas into real-world digital products using modern web technolo
 - **Tools:** Git, GitHub, VS Code  
 - **Deployment:** GitHub Pages / Vercel / Netlify  
 
----
+--- 
 
 ## ✨ Key Features
 
