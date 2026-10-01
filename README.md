@@ -27,7 +27,7 @@ I enjoy turning ideas into real-world digital products using modern web technolo
 
 - **Languages:** HTML, CSS, JavaScript  
 - **Frontend:** React.js  
-- **Styling:** Tailwind CSS  
+- **Styling:** Tailwind CSS   
 - **Animations:** CSS Animations, Transitions, Scroll-based effects  
 - **Tools:** Git, GitHub, VS Code  
 - **Deployment:** GitHub Pages / Vercel / Netlify  
