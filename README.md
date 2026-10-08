@@ -21,7 +21,7 @@ I specialize in building **high-performance, visually clean, and user-friendly w
   
 I enjoy turning ideas into real-world digital products using modern web technologies. 
 
----
+--- 
 
 ## 🛠️ Tech Stack
 
